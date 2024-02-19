@@ -265,6 +265,13 @@ sudo apt install helix
 <p>Releases are available in the <code>extra</code> repository:</p>
 <pre><code class="language-sh">sudo pacman -S helix
 </code></pre>
+<blockquote>
+<p>💡 When installed from the <code>extra</code> repository, run Helix with <code>helix</code> instead of <code>hx</code>.</p>
+<p>For example:</p>
+<pre><code class="language-sh">helix --health
+</code></pre>
+<p>to check health</p>
+</blockquote>
 <p>Additionally, a <a href="https://aur.archlinux.org/packages/helix-git/">helix-git</a> package is available
 in the AUR, which builds the master branch.</p>
 <h3 id="nixos"><a class="header" href="#nixos">NixOS</a></h3>
@@ -678,8 +685,8 @@ selection to the "func" <code>identifier</code>.</p>
 <tr><td><code>End</code></td><td>Move to the end of the line</td><td><code>goto_line_end</code></td></tr>
 <tr><td><code>Ctrl-b</code>, <code>PageUp</code></td><td>Move page up</td><td><code>page_up</code></td></tr>
 <tr><td><code>Ctrl-f</code>, <code>PageDown</code></td><td>Move page down</td><td><code>page_down</code></td></tr>
-<tr><td><code>Ctrl-u</code></td><td>Move half page up</td><td><code>half_page_up</code></td></tr>
-<tr><td><code>Ctrl-d</code></td><td>Move half page down</td><td><code>half_page_down</code></td></tr>
+<tr><td><code>Ctrl-u</code></td><td>Move cursor and page half page up</td><td><code>page_cursor_half_up</code></td></tr>
+<tr><td><code>Ctrl-d</code></td><td>Move cursor and page half page down</td><td><code>page_cursor_half_down</code></td></tr>
 <tr><td><code>Ctrl-i</code></td><td>Jump forward on the jumplist</td><td><code>jump_forward</code></td></tr>
 <tr><td><code>Ctrl-o</code></td><td>Jump backward on the jumplist</td><td><code>jump_backward</code></td></tr>
 <tr><td><code>Ctrl-s</code></td><td>Save the current selection to the jumplist</td><td><code>save_selection</code></td></tr>
@@ -804,8 +811,8 @@ useful when you're simply looking over text and not actively editing it.</p>
 <tr><td><code>k</code>, <code>up</code></td><td>Scroll the view upwards</td><td><code>scroll_up</code></td></tr>
 <tr><td><code>Ctrl-f</code>, <code>PageDown</code></td><td>Move page down</td><td><code>page_down</code></td></tr>
 <tr><td><code>Ctrl-b</code>, <code>PageUp</code></td><td>Move page up</td><td><code>page_up</code></td></tr>
-<tr><td><code>Ctrl-d</code></td><td>Move half page down</td><td><code>half_page_down</code></td></tr>
-<tr><td><code>Ctrl-u</code></td><td>Move half page up</td><td><code>half_page_up</code></td></tr>
+<tr><td><code>Ctrl-u</code></td><td>Move cursor and page half page up</td><td><code>page_cursor_half_up</code></td></tr>
+<tr><td><code>Ctrl-d</code></td><td>Move cursor and page half page down</td><td><code>page_cursor_half_down</code></td></tr>
 </tbody></table>
 </div>
 <h4 id="goto-mode"><a class="header" href="#goto-mode">Goto mode</a></h4>
@@ -1147,6 +1154,7 @@ Languages</a> guide for more language configuration information.</p>
 <tr><td>cabal</td><td></td><td></td><td></td><td><code>haskell-language-server-wrapper</code></td></tr>
 <tr><td>cairo</td><td>✓</td><td>✓</td><td>✓</td><td><code>cairo-language-server</code></td></tr>
 <tr><td>capnp</td><td>✓</td><td></td><td>✓</td><td></td></tr>
+<tr><td>cel</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>clojure</td><td>✓</td><td></td><td></td><td><code>clojure-lsp</code></td></tr>
 <tr><td>cmake</td><td>✓</td><td>✓</td><td>✓</td><td><code>cmake-language-server</code></td></tr>
 <tr><td>comment</td><td>✓</td><td></td><td></td><td></td></tr>
@@ -1162,6 +1170,7 @@ Languages</a> guide for more language configuration information.</p>
 <tr><td>devicetree</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>dhall</td><td>✓</td><td>✓</td><td></td><td><code>dhall-lsp-server</code></td></tr>
 <tr><td>diff</td><td>✓</td><td></td><td></td><td></td></tr>
+<tr><td>docker-compose</td><td>✓</td><td></td><td>✓</td><td><code>docker-compose-langserver</code></td></tr>
 <tr><td>dockerfile</td><td>✓</td><td></td><td></td><td><code>docker-langserver</code></td></tr>
 <tr><td>dot</td><td>✓</td><td></td><td></td><td><code>dot-language-server</code></td></tr>
 <tr><td>dtd</td><td>✓</td><td></td><td></td><td></td></tr>
@@ -1199,9 +1208,10 @@ Languages</a> guide for more language configuration information.</p>
 <tr><td>hare</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>haskell</td><td>✓</td><td>✓</td><td></td><td><code>haskell-language-server-wrapper</code></td></tr>
 <tr><td>haskell-persistent</td><td>✓</td><td></td><td></td><td></td></tr>
-<tr><td>hcl</td><td>✓</td><td></td><td>✓</td><td><code>terraform-ls</code></td></tr>
+<tr><td>hcl</td><td>✓</td><td>✓</td><td>✓</td><td><code>terraform-ls</code></td></tr>
 <tr><td>heex</td><td>✓</td><td>✓</td><td></td><td><code>elixir-ls</code></td></tr>
 <tr><td>hocon</td><td>✓</td><td></td><td>✓</td><td></td></tr>
+<tr><td>hoon</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>hosts</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>html</td><td>✓</td><td></td><td></td><td><code>vscode-html-language-server</code></td></tr>
 <tr><td>hurl</td><td>✓</td><td></td><td>✓</td><td></td></tr>
@@ -1242,7 +1252,7 @@ Languages</a> guide for more language configuration information.</p>
 <tr><td>nasm</td><td>✓</td><td>✓</td><td></td><td></td></tr>
 <tr><td>nickel</td><td>✓</td><td></td><td>✓</td><td><code>nls</code></td></tr>
 <tr><td>nim</td><td>✓</td><td>✓</td><td>✓</td><td><code>nimlangserver</code></td></tr>
-<tr><td>nix</td><td>✓</td><td></td><td></td><td><code>nil</code></td></tr>
+<tr><td>nix</td><td>✓</td><td>✓</td><td></td><td><code>nil</code></td></tr>
 <tr><td>nu</td><td>✓</td><td></td><td></td><td><code>nu</code></td></tr>
 <tr><td>nunjucks</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>ocaml</td><td>✓</td><td></td><td>✓</td><td><code>ocamllsp</code></td></tr>
@@ -1256,6 +1266,7 @@ Languages</a> guide for more language configuration information.</p>
 <tr><td>pem</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>perl</td><td>✓</td><td>✓</td><td>✓</td><td><code>perlnavigator</code></td></tr>
 <tr><td>php</td><td>✓</td><td>✓</td><td>✓</td><td><code>intelephense</code></td></tr>
+<tr><td>pkl</td><td>✓</td><td></td><td>✓</td><td></td></tr>
 <tr><td>po</td><td>✓</td><td>✓</td><td></td><td></td></tr>
 <tr><td>pod</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>ponylang</td><td>✓</td><td>✓</td><td>✓</td><td></td></tr>
@@ -1286,6 +1297,7 @@ Languages</a> guide for more language configuration information.</p>
 <tr><td>smithy</td><td>✓</td><td></td><td></td><td><code>cs</code></td></tr>
 <tr><td>sml</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>solidity</td><td>✓</td><td></td><td></td><td><code>solc</code></td></tr>
+<tr><td>spicedb</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>sql</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>sshclientconfig</td><td>✓</td><td></td><td></td><td></td></tr>
 <tr><td>starlark</td><td>✓</td><td>✓</td><td></td><td></td></tr>
@@ -1615,7 +1627,10 @@ min-width = 1
 <h4 id="editorguttersdiagnostics-section"><a class="header" href="#editorguttersdiagnostics-section"><code>[editor.gutters.diagnostics]</code> Section</a></h4>
 <p>Currently unused</p>
 <h4 id="editorguttersdiff-section"><a class="header" href="#editorguttersdiff-section"><code>[editor.gutters.diff]</code> Section</a></h4>
-<p>Currently unused</p>
+<p>The <code>diff</code> gutter option displays colored bars indicating whether a <code>git</code> diff represents that a line was added, removed or changed.
+These colors are controlled by the theme attributes <code>diff.plus</code>, <code>diff.minus</code> and <code>diff.delta</code>.</p>
+<p>Other diff providers will eventually be supported by a future plugin system.</p>
+<p>There are currently no options for this section.</p>
 <h4 id="editorguttersspacer-section"><a class="header" href="#editorguttersspacer-section"><code>[editor.gutters.spacer]</code> Section</a></h4>
 <p>Currently unused</p>
 <h3 id="editorsoft-wrap-section"><a class="header" href="#editorsoft-wrap-section"><code>[editor.soft-wrap]</code> Section</a></h3>
@@ -2176,23 +2191,25 @@ language-servers = [ "mylang-lsp" ]
 <p>Helix determines which language configuration to use based on the <code>file-types</code> key
 from the above section. <code>file-types</code> is a list of strings or tables, for
 example:</p>
-<pre><code class="language-toml">file-types = ["Makefile", "toml", { suffix = ".git/config" }]
+<pre><code class="language-toml">file-types = ["toml", { glob = "Makefile" }, { glob = ".git/config" }, { glob = ".github/workflows/*.yaml" } ]
 </code></pre>
 <p>When determining a language configuration to use, Helix searches the file-types
 with the following priorities:</p>
 <ol>
-<li>Exact match: if the filename of a file is an exact match of a string in a
-<code>file-types</code> list, that language wins. In the example above, <code>"Makefile"</code>
-will match against <code>Makefile</code> files.</li>
-<li>Extension: if there are no exact matches, any <code>file-types</code> string that
-matches the file extension of a given file wins. In the example above, the
-<code>"toml"</code> matches files like <code>Cargo.toml</code> or <code>languages.toml</code>.</li>
-<li>Suffix: if there are still no matches, any values in <code>suffix</code> tables
-are checked against the full path of the given file. In the example above,
-the <code>{ suffix = ".git/config" }</code> would match against any <code>config</code> files
-in <code>.git</code> directories. Note: <code>/</code> is used as the directory separator but is
-replaced at runtime with the appropriate path separator for the operating
-system, so this rule would match against <code>.git\config</code> files on Windows.</li>
+<li>Glob: values in <code>glob</code> tables are checked against the full path of the given
+file. Globs are standard Unix-style path globs (e.g. the kind you use in Shell)
+and can be used to match paths for a specific prefix, suffix, directory, etc.
+In the above example, the <code>{ glob = "Makefile" }</code> config would match files
+with the name <code>Makefile</code>, the <code>{ glob = ".git/config" }</code> config would match
+<code>config</code> files in <code>.git</code> directories, and the <code>{ glob = ".github/workflows/*.yaml" }</code>
+config would match any <code>yaml</code> files in <code>.github/workflow</code> directories. Note
+that globs should always use the Unix path separator <code>/</code> even on Windows systems;
+the matcher will automatically take the machine-specific separators into account.
+If the glob isn't an absolute path or doesn't already start with a glob prefix,
+<code>*/</code> will automatically be added to ensure it matches for any subdirectory.</li>
+<li>Extension: if there are no glob matches, any <code>file-types</code> string that matches
+the file extension of a given file wins. In the example above, the <code>"toml"</code>
+config matches files like <code>Cargo.toml</code> or <code>languages.toml</code>.</li>
 </ol>
 <h2 id="language-server-configuration"><a class="header" href="#language-server-configuration">Language Server configuration</a></h2>
 <p>Language servers are configured separately in the table <code>language-server</code> in the same file as the languages <code>languages.toml</code></p>
@@ -2217,6 +2234,7 @@ languages = { typescript = [ { formatCommand ="prettier --stdin-filepath ${INPUT
 <tr><td><code>config</code></td><td>LSP initialization options</td></tr>
 <tr><td><code>timeout</code></td><td>The maximum time a request to the language server may take, in seconds. Defaults to <code>20</code></td></tr>
 <tr><td><code>environment</code></td><td>Any environment variables that will be used when starting the language server <code>{ "KEY1" = "Value1", "KEY2" = "Value2" }</code></td></tr>
+<tr><td><code>required-root-patterns</code></td><td>A list of <code>glob</code> patterns to look for in the working directory. The language server is started if at least one of them is found.</td></tr>
 </tbody></table>
 </div>
 <p>A <code>format</code> sub-table within <code>config</code> can be used to pass extra formatting options to
